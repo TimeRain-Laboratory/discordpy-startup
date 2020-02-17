@@ -1,21 +1,15 @@
-from discord.ext import commands
+#インストールしたdiscord.pyの読み込み
+import discord 
 import os
-import traceback
+#randomモジュールの読み込み
+import random
+#reライブラリの読み込み
+import re
+#datetimeの読み込み
+import datetime
 
-bot = commands.Bot(command_prefix='/')
-token = os.environ['DISCORD_BOT_TOKEN']
+#翠のトークン
+TOKEN = os.environ['DISCORD_BOT_TOKEN']
 
-
-@bot.event
-async def on_command_error(ctx, error):
-    orig_error = getattr(error, "original", error)
-    error_msg = ''.join(traceback.TracebackException.from_exception(orig_error).format())
-    await ctx.send(error_msg)
-
-
-@bot.command()
-async def ping(ctx):
-    await ctx.send('pong')
-
-
-bot.run(token)
+#接続に必要なオブジェクトを生成
+client = discord.Client()
